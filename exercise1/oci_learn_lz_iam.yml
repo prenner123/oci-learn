@@ -10,6 +10,9 @@ compartments_configuration:
     CMP-NETWORK-KEY:
       name: cmp-network_peter1
       description: oci-learn-lz Shared Network Compartment
+    CMP-TEST-KEY:
+      name: cmp-test_peter1
+      description: Test Peter compartement  
     CMP-CHANNELS-KEY:
       name: cmp-channels_peter1
       description: oci-learn-lz Channels Domain dedicated Compartment
