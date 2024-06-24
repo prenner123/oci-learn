@@ -8,18 +8,18 @@ compartments_configuration:
   enable_delete: true
   compartments:
     CMP-NETWORK-KEY:
-      name: cmp-network
+      name: cmp-network_peter1
       description: oci-learn-lz Shared Network Compartment
     CMP-CHANNELS-KEY:
-      name: cmp-channels
+      name: cmp-channels_peter1
       description: oci-learn-lz Channels Domain dedicated Compartment
       children:
         CMP-CHANNELS-NETWORK-KEY:
-          name: cmp-channels-network
+          name: cmp-channels-network_peter1
           description: oci-learn-lz Channels domain shared networking compartment
             within the domain
         CMP-CHANNELS-NONPROD-KEY:
-          name: cmp-channels-nonprod
+          name: cmp-channels-nonprod_peter1
           description: oci-learn-lz Channels domain for non-prod environment compartment
 groups_configuration:
   groups: {}
