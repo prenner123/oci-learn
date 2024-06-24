@@ -6,7 +6,7 @@
     },
     "network_configuration_categories": {
       "HUB": {
-        "category_compartment_id": "CMP-TEST-KEY",
+        "category_compartment_id": "cmp-network_peter1",
         "category_freeform_tags": {
           "vision-sub-environment": "hub"
         },
