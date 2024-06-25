@@ -3,7 +3,7 @@ compartments_configuration:
   enable_delete: 'true'
   compartments:
     CMP-OE77-KEY:
-      name: cmp-oe1
+      name: cmp-oe77
       description: oci-open-lz-customer OE-77 top compartment
       defined_tags: 
       freeform_tags:
@@ -113,22 +113,3 @@ policies_configuration:
       - allow group grp-oe77-network-admins to read all-resources in compartment cmp-oe1:cmp-oe77-common:cmp-oe77-common-network
       - allow group grp-oe77-network-admins to manage network-security-groups in compartment
         cmp-oe1:cmp-oe77-common:cmp-oe77-common-network
-    PCY-OE77-PROD-DEPTA-PROJ1-COMMON-NETWORK:
-      name: pcy-oe77-prod-depta-proj1-app-common-network
-      description: Open LZ policy which allows the grp-pa-oe77-prod-deptA-proj1-prd-app-admins,
-        grp-pa-oe77-prod-deptA-proj1-prd-db-admins and grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
-        user groups to access common networking resources in the OE.
-      compartment_id: "<OCID-CMP-OE77-COMMON>"
-      statements:
-      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
-        to read virtual-network-family in compartment cmp-oe77-common-network
-      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
-        to use subnets in compartment cmp-oe77-common-network
-      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
-        to use network-security-groups in compartment cmp-oe77-common-network
-      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
-        to use vnics in compartment cmp-oe77-common-network
-      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
-        to manage private-ips in compartment cmp-oe77-common-network
-      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
-        to use load-balancers in compartment cmp-oe77-common-network
