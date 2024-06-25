@@ -86,8 +86,8 @@ groups_configuration:
       description: GRP.OE.04 responsible for administrating OE related databases.
 dynamic_groups_configuration:
   dynamic_groups:
-    DGP-OS-MANAGEMENT:
-      name: dgp-os-management
+    DGP-OS77-MANAGEMENT:
+      name: dgp-os77-management
       description: DGP.77 Holds the compartments which contain the VM images to be
         automatically patched by the OS Management Service.
       matching_rule: ALL {instance.compartment.id = 'cmp-oe77-common-infra'}
