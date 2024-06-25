@@ -98,7 +98,7 @@ policies_configuration:
       name: pcy-oe77-administration
       description: POL.0E.77 Open LZ policy which allows the grp-oe77-admins group
         users to manage the compartment structure of the OE.
-      compartment_id: "<OCID-COMPARTMENT-ROOT>"
+      compartment_id: "ocid1.tenancy.oc19..aaaaaaaap3cfrdnpt6uejubxpnzsfzb3do7un4pcau3gt53k74dxzcbdc5wa"
       statements:
       - allow group grp-oe77-admins to use cloud-shell in compartment cmp-oe1
       - allow group grp-oe77-admins to manage policies in compartment cmp-oe1
@@ -107,7 +107,7 @@ policies_configuration:
       name: pcy-oe77-network-administration
       description: POL.0E.02 Open LZ policy which allows the grp-oe77-network-admins
         group users to manage NSGs in the OE network.
-      compartment_id: "<OCID-COMPARTMENT-ROOT>"
+      compartment_id: "ocid1.tenancy.oc19..aaaaaaaap3cfrdnpt6uejubxpnzsfzb3do7un4pcau3gt53k74dxzcbdc5wa"
       statements:
       - allow group grp-oe77-network-admins to use cloud-shell in compartment cmp-oe1:cmp-oe77-common:cmp-oe77-common-network
       - allow group grp-oe77-network-admins to read all-resources in compartment cmp-oe1:cmp-oe77-common:cmp-oe77-common-network
