@@ -1,0 +1,134 @@
+---
+compartments_configuration:
+  enable_delete: 'true'
+  compartments:
+    CMP-OE77-KEY:
+      name: cmp-oe1
+      description: oci-open-lz-customer OE-77 top compartment
+      defined_tags: 
+      freeform_tags:
+        oci-open-lz: oci-open-lz-oe77
+        oci-open-lz-customer: oci-open-lz-customer
+        oci-open-lz-cmp: oe-top
+      children:
+        CMP-OE77-COMMON-KEY:
+          name: cmp-oe77-common
+          description: oci-open-lz-customer OE77 common Compartment
+          defined_tags: 
+          freeform_tags:
+            oci-open-lz: oci-open-lz-oe77-common
+            oci-open-lz-customer: oci-open-lz-customer
+            oci-open-lz-cmp: oe-common
+          children:
+            CMP-OE77-COMMON-INFRA-KEY:
+              name: cmp-oe77-common-infra
+              description: oci-open-lz-customer OE77 common infra Compartment
+              defined_tags: 
+              freeform_tags:
+                oci-open-lz: oci-open-lz-oe77-common-infra
+                oci-open-lz-customer: oci-open-lz-customer
+                oci-open-lz-cmp: oe-common-infra
+            CMP-OE77-COMMON-NETWORK-KEY:
+              name: cmp-oe77-common-network
+              description: oci-open-lz-customer OE77 common network Compartment
+              defined_tags: 
+              freeform_tags:
+                oci-open-lz: oci-open-lz-oe77-common-network
+                oci-open-lz-customer: oci-open-lz-customer
+                oci-open-lz-cmp: oe-common-network
+        CMP-OE77-SANDBOX-KEY:
+          name: cmp-oe77-sandbox
+          description: oci-open-lz-customer OE77 sandbox Compartment
+          defined_tags: 
+          freeform_tags:
+            oci-open-lz: oci-open-lz-oe77-sandbox
+            oci-open-lz-customer: oci-open-lz-customer
+            oci-open-lz-cmp: oe-sandbox
+        CMP-OE77-DEVELOPMENT-KEY:
+          name: cmp-oe77-development
+          description: oci-open-lz-customer OE77 development Compartment
+          defined_tags: 
+          freeform_tags:
+            oci-open-lz: oci-open-lz-oe77-development
+            oci-open-lz-customer: oci-open-lz-development
+            oci-open-lz-cmp: oe-development
+        CMP-OE77-NONPROD-KEY:
+          name: cmp-oe77-nonprod
+          description: oci-open-lz-customer OE77 nonprod Compartment
+          defined_tags: 
+          freeform_tags:
+            oci-open-lz: oci-open-lz-oe77-nonprod
+            oci-open-lz-customer: oci-open-lz-nonprod
+            oci-open-lz-cmp: oe-nonprod
+        CMP-OE77-PROD-KEY:
+          name: cmp-oe77-prod
+          description: oci-open-lz-customer OE77 prod Compartment
+          defined_tags: 
+          freeform_tags:
+            oci-open-lz: oci-open-lz-oe77-prod
+            oci-open-lz-customer: oci-open-lz-prod
+            oci-open-lz-cmp: oe-prod
+groups_configuration:
+  groups:
+    GRP-OE77-ADMINS:
+      name: grp-oe77-admins
+      description: GRP.OE.77 OE specific administrator group responsible for creating
+        compartments.
+    GRP-OE77-NETWORK-ADMINS:
+      name: grp-oe77-network-admins
+      description: GRP.OE.02 use the OE common networking and manages project NSGs.
+    GRP-OE77-APP-ADMINS:
+      name: grp-oe77-app-admins
+      description: GRP.OE.03 responsible for administrating OE related applications,
+        PaaS, etc.
+    GRP-OE77-DB-ADMINS:
+      name: grp-oe77-db-admins
+      description: GRP.OE.04 responsible for administrating OE related databases.
+dynamic_groups_configuration:
+  dynamic_groups:
+    DGP-OS-MANAGEMENT:
+      name: dgp-os-management
+      description: DGP.77 Holds the compartments which contain the VM images to be
+        automatically patched by the OS Management Service.
+      matching_rule: ALL {instance.compartment.id = 'cmp-oe77-common-infra'}
+policies_configuration:
+  enable_cis_benchmark_checks: 'false'
+  supplied_policies:
+    PCY-OE77-ADMINISTRATORS:
+      name: pcy-oe77-administration
+      description: POL.0E.77 Open LZ policy which allows the grp-oe77-admins group
+        users to manage the compartment structure of the OE.
+      compartment_id: "<OCID-COMPARTMENT-ROOT>"
+      statements:
+      - allow group grp-oe77-admins to use cloud-shell in compartment cmp-oe1
+      - allow group grp-oe77-admins to manage policies in compartment cmp-oe1
+      - allow group grp-oe77-admins to manage policies in compartment cmp-oe1
+    PCY-OE77-NETWORK-ADMINISTRATION:
+      name: pcy-oe77-network-administration
+      description: POL.0E.02 Open LZ policy which allows the grp-oe77-network-admins
+        group users to manage NSGs in the OE network.
+      compartment_id: "<OCID-COMPARTMENT-ROOT>"
+      statements:
+      - allow group grp-oe77-network-admins to use cloud-shell in compartment cmp-oe1:cmp-oe77-common:cmp-oe77-common-network
+      - allow group grp-oe77-network-admins to read all-resources in compartment cmp-oe1:cmp-oe77-common:cmp-oe77-common-network
+      - allow group grp-oe77-network-admins to manage network-security-groups in compartment
+        cmp-oe1:cmp-oe77-common:cmp-oe77-common-network
+    PCY-OE77-PROD-DEPTA-PROJ1-COMMON-NETWORK:
+      name: pcy-oe77-prod-depta-proj1-app-common-network
+      description: Open LZ policy which allows the grp-pa-oe77-prod-deptA-proj1-prd-app-admins,
+        grp-pa-oe77-prod-deptA-proj1-prd-db-admins and grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
+        user groups to access common networking resources in the OE.
+      compartment_id: "<OCID-CMP-OE77-COMMON>"
+      statements:
+      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
+        to read virtual-network-family in compartment cmp-oe77-common-network
+      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
+        to use subnets in compartment cmp-oe77-common-network
+      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
+        to use network-security-groups in compartment cmp-oe77-common-network
+      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
+        to use vnics in compartment cmp-oe77-common-network
+      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
+        to manage private-ips in compartment cmp-oe77-common-network
+      - allow group grp-pa-oe77-prod-deptA-proj1-prd-app-admins,grp-pa-oe77-prod-deptA-proj1-prd-db-admins,grp-pa-oe77-prod-deptA-proj1-prd-infra-admins
+        to use load-balancers in compartment cmp-oe77-common-network
