@@ -326,7 +326,7 @@ network_configuration:
                 protocol: ALL
                 stateless: false
               - description: egress rule for OSN
-                dst: all-services-in-oracle-services-network
+                dst: all-services
                 dst_type: SERVICE_CIDR_BLOCK
                 protocol: ALL
                 stateless: false
